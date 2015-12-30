@@ -1,0 +1,73 @@
+Caitlyn Duggan Howitzer Project Installation Notes
+
+I'm running this application locally.  To view, you'll need to install it on a dev machine.
+
+1) Unzip this project into directory accessible to Apache (or edit apache settings to preferred install directory).
+  a) my project is setup to run locally at localhost/howitzer (saved in xampp/htdocs FYI)
+2) Open project in IDE
+  a) if you'd like to verify coding standards, see #3 in PHP concepts below
+    1) setup in Eclipse via Window->Preferences->PHP Tools->PHPCodeSniffer 
+      -then choose settings and add new standard where the github phpcs-psr project is checked out
+      -alternatively, if you set the PEAR to external you may have PSR-1 and PSR-2 standards by default which can be selected
+      -note, dependencies do not necessarily meet PSR standards and I'm not resolving
+3) When reviewing this project, refer to Assumptions.txt to see assumptions made from the spec
+4) Follow the README in db/install to setup in dev machine
+  a) probably want to copy over to a .sql file to execute
+  b) in index.php change PDO connection to appropriate connection info
+
+////////////////////////////////////////////////////////////////////////////////
+
+Tested on following environment:
+
+PHP 5.4.19
+MySQL 5.6
+Windows 7 64-bit
+Apache via XAMPP v3.2.1
+Google Chrome Version 31.0.1650.57 m
+
+////////////////////////////////////////////////////////////////////////////////
+
+PHP concepts covered in this project:
+
+1) Namespaces
+
+2) Composer - PSR-0 autoload & dependency mgmt
+  a) Dependencies
+    1) Monolog to cover PSR-3 logging standard
+    
+3) PHP_CodeSniffer for PSR-1 and PSR-2 coding standards
+  a) using phpcs-psr git project as of 2013-11-27 - https://github.com/klaussilveira/phpcs-psr
+  b) removed 2 checks
+    1) new line characters - don't care if they're unix or windows style
+    2) 80 character max per line - I don't see a reason, other than printing, why this should be enforced
+  
+4) MVC
+  a) TODO there are several variations of MVC pattern - investigate how could be improved
+
+5) Dependency Injection
+  a) ie. Controller gets Model instance passed in
+  
+6) PDO for MySQL
+  
+////////////////////////////////////////////////////////////////////////////////
+
+Given more time, I would have looked into the following:
+
+1) nice UI where the user can actually interact with Howitzer object
+  a) maybe integrate an HTML5 game
+  b) played with CSS
+  
+2) clean up code
+  a) ie. spend more time on the MVC pattern
+  
+3) get user metadata and populate in user_metadata DB table
+  a) ie. user location
+  
+4) upgrade my php install to 5.5 and test this app against it as well as implement some 5.5 features
+  a) ie. finally block
+  
+5) use sessions
+  a) HTML5 web storage if available; if not, cookies
+  
+6) advanced trajectory equation
+  a) only had time to use the most basic equation

@@ -1,0 +1,50 @@
+@CHARSET "ISO-8859-1";
+
+.hidden {
+	display: none;
+}
+.texterror {
+	font-weight:bold; 
+	color:red; 
+	font-size:1.15em;
+}
+.bottom-right {
+	position: fixed;
+	bottom: 3px;
+	right: 10px;
+	padding-left: 3px;
+	
+	background: gray;
+	border: 2px solid black;
+}
+input {
+	width: 375px;
+	display: block;
+	border: 1px solid #999;
+	height: 25px;
+	-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+.button {
+	width: 100px;
+}
+form {
+background: -webkit-gradient(linear, bottom, left 175px, from(#CCCCCC), to(#EEEEEE));
+background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+font-family: Tahoma, Geneva, sans-serif;
+font-size: 14px;
+line-height: 24px;
+font-weight: bold;
+color: black;
+text-decoration: none;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+padding:10px;
+border: 1px solid #999;
+border: inset 1px solid #333;
+-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}

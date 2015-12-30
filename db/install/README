@@ -1,0 +1,76 @@
+//Directions to install MySQL DB for Howitzer project
+//Execute the following SQL commands.  Note I didn't create .sql files b/c I'm on a Windows computer and concerned about formatting (I'm used to Linux).
+
+DROP DATABASE IF EXISTS `howitzer`;
+CREATE DATABASE `howitzer` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `howitzer`.`user`;
+CREATE TABLE `howitzer`.`user` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) NOT NULL,
+  `create_date` datetime NOT NULL DEFAULT '0000-00-00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+// because the specs don't specify what user data to store, a generic table that is flexible is appropriate
+
+DROP TABLE IF EXISTS `howitzer`.`user_metadata`;
+CREATE TABLE `howitzer`.`user_metadata` (
+  `user_id` int(10) unsigned NOT NULL,
+  `property` varchar(255) NOT NULL,
+  `value` varchar(255) NOT NULL,
+  KEY `fk_user_id_entry` (`user_id`),
+  CONSTRAINT `fk_user_id_metadata` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `howitzer`.`user_trajectory`;
+CREATE TABLE `howitzer`.`user_trajectory` (
+  `user_id` int(10) unsigned NOT NULL,
+  `date` datetime NOT NULL DEFAULT '0000-00-00',
+  `shellWeight` int(10) unsigned NOT NULL,
+  `startingDistanceToTarget` decimal(20,2) NOT NULL,
+  `targetLength` int(10) unsigned NOT NULL,
+  `targetWidth` int(10) unsigned NOT NULL,
+  `barrelAngle` int(10) unsigned NOT NULL,
+  `muzzleVelocity` int(10) unsigned NOT NULL,
+  `shellDistance` decimal(20,2) NOT NULL,
+  `targetHit` enum('true','false') NOT NULL,
+  `distanceFromTarget` decimal(20,2) NOT NULL,
+  `missedDirectionFromTarget` enum('past','short of'),
+  KEY `fk_user_id_entry` (`user_id`),
+  CONSTRAINT `fk_user_id_trajectory` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+// prepopulate
+
+INSERT INTO `howitzer`.`user` (`name`,`create_date`) values ('CBD',now());
+INSERT INTO `howitzer`.`user` (`name`,`create_date`) values ('ISM',now());
+INSERT INTO `howitzer`.`user` (`name`,`create_date`) values ('EPD',now());
+INSERT INTO `howitzer`.`user` (`name`,`create_date`) values ('KAD',now());
+INSERT INTO `howitzer`.`user` (`name`,`create_date`) values ('MMD',now());
+INSERT INTO `howitzer`.`user` (`name`,`create_date`) values ('FSM',now());
+
+INSERT INTO `howitzer`.`user_trajectory` values (1, now(), 97, 2636, 62, 62, 20, 225, 3320.52, 'false', 622.52, 'past');
+INSERT INTO `howitzer`.`user_trajectory` values (1, now(), 93, 9894, 93, 93, 45, 300, 9187.67, 'false', 710.33, 'short of');
+INSERT INTO `howitzer`.`user_trajectory` values (1, now(), 98, 4778, 38, 38, 25, 250, 4885.49, 'false', 69.49, 'past');
+INSERT INTO `howitzer`.`user_trajectory` values (1, now(), 97, 12625, 28, 28, 45, 400, 16326.53, 'false', 3673.53, 'past');
+INSERT INTO `howitzer`.`user_trajectory` values (1, now(), 51, 1681, 40, 40, 0, 100, 0, 'false', 1681, 'short of');
+INSERT INTO `howitzer`.`user_trajectory` values (1, now(), 59, 12214, 70, 70, 45, 350, 12500.00, 'false', 216, 'past');
+
+INSERT INTO `howitzer`.`user_trajectory` values (2, now(), 57, 13111, 36, 36, 45, 400, 16326.53, 'false', 3179.53, 'past');
+INSERT INTO `howitzer`.`user_trajectory` values (2, now(), 40, 13225, 86, 86, 45, 300, 9183.67, 'false', 4041.33, 'short of');
+INSERT INTO `howitzer`.`user_trajectory` values (2, now(), 85, 5408, 85, 85, 25, 300, 7035.10, 'false', 1542.1, 'past');
+INSERT INTO `howitzer`.`user_trajectory` values (2, now(), 98, 5459, 21, 21, 30, 250, 5523.12, 'false', 43.12, 'past');
+INSERT INTO `howitzer`.`user_trajectory` values (2, now(), 60, 10025, 31, 31, 45, 300, 9183.67, 'false', 841.33, 'short of');
+INSERT INTO `howitzer`.`user_trajectory` values (2, now(), 85, 3717, 9, 9, 5, 200, 708.77, 'false', 3008.23, 'short of');
+
+INSERT INTO `howitzer`.`user_trajectory` values (3, now(), 76, 11334, 78, 78, 45, 325, 10778.06, 'false', 555.94, 'short of');
+
+INSERT INTO `howitzer`.`user_trajectory` values (4, now(), 71, 1802, 9, 9, 30, 150, 1988.32, 'false', 177.32, 'past');
+
+INSERT INTO `howitzer`.`user_trajectory` values (5, now(), 49, 5949, 59, 59, 45, 275, 7716.84, 'false', 1708.84, 'past');
+
+INSERT INTO `howitzer`.`user_trajectory` values (6, now(), 76, 12319, 72, 72, 45, 475, 23022.96, 'false', 10631.96, 'past');

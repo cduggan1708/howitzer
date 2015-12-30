@@ -1,0 +1,43 @@
+Assumptions made while implementing the Howitzer shooting practice UI
+Working with a team, I would verify these assumptions before finalizing design but, for purposes of this code challenge, I simply documenting and going forward with assumptions.
+
+Specs I was given with assumptions inline:
+
+1) The user should visit a screen and be presented with the following information (which changes with each visit):
+A: USER REGISTION NOT NEEDED (SEE #4)
+  a) The weight of the howitzer shell.
+  A: THIS IS NEEDED TO CALCULATE AIR DRAG; WILL ONLY FACTOR INTO EQUATION IF TIME PERMITS
+  A: GOT VALUES BASED ON GOOGLE SEARCH OF HOWITZER SHELLS
+  b) The distance to the target.
+  A: GOT VALUES BASED ON GOOGLE SEARCH OF HOWITZER CANNON RANGES
+  c) The size of the target.
+  A: THIS IS A LANDING PAD IN SQUARE SHAPE, LAID FLAT ON GROUND
+  
+2) The user should be able to set the following options:
+  a) The angle of the howitzer barrel relative to the ground.
+  b) The muzzle speed (Preferably a list of pre-selected speeds).
+  A: GOT VALUES BASED ON GOOGLE SEARCH OF HOWITZER MUZZEL VELOCITIES
+
+3) The user should be able to set the above options and select ‘Fire’. The application should calculate the trajectory of the shell and return the following:
+A: USING MOST BASIC TRAJECTORY EQUATION; IF TIME PERMITS INCLUDE AIR DRAG
+  a) Whether the target was hit or missed.
+  b) How far away from the target the shell landed.
+
+4) In addition, the trajectories of every shot should be recorded into the DB, along with general information on the current user.  
+This doesn’t necessarily have to be identifiable info, but browser info, location if available, etc.
+A: USER MUST ENTER NAME BEFORE BEING ALLOWED TO 'FIRE'
+A: CREATED A FLEXIBLE USER METADATA DB SINCE SPEC DOESN'T SPECIFY WHICH INFO TO TRACK
+  -IF TIME PERMITS COULD IMPLEMENT AN API TO GET USER IP LOCATION (IE. IP2LOCATION)
+
+5) The following information should always be displayed:
+  a) Total shots for this user.
+  b) Total shots for all users.
+  c) Total Users.
+  d) Avg number of shots to hit the target.
+  A: AVG NUM FOR ALL USERS
+  e) Top 5 most accurate users, along with a breakout of their shot counts and general accuracy.
+  f) User’s ranking once he/she hits target.
+
+6) Application should be written in PHP with a Mysql DB back end. The UI display and feature set is completely open-ended and at coder’s discretion provided that it meets the minimum requirements above.
+
+7) Ballistics calculations should be accurate for earth standard gravity (or if the coder is feeling creative, a settable gravity).
